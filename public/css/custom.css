@@ -1,0 +1,42 @@
+.signup{
+    margin: 20px auto;
+    width: 40%;
+  }
+
+  .heading{
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .user{
+    padding-left: 20px;
+  }
+
+  .nav-item .user{
+    text-decoration: none;
+  }
+
+  .media-object{
+    width: 40px;
+  }
+
+  .lead{
+    text-align: center;
+  }
+
+  .tweetbody{
+    margin: 0 auto;
+  }
+
+  #tweetbody{
+    margin: 20px auto;
+  }
+
+  .media-left{
+    padding-right: 5px;
+  }
+
+  #user{
+    width: 30%;
+    margin: 10px auto;
+  }

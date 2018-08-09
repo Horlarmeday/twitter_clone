@@ -1,0 +1,74 @@
+<% include ../partials/header %>
+
+
+    <div class="starter-template">
+        <h2><%= foundUser.name  %></h2>
+        <img src="<%= foundUser.photo %>">
+        <br>
+        <br>
+        <% if (!CurrentUser){ %>
+            <input type="hidden" id="user_id" value="<%= foundUser._id %>"/>
+            <% if (follower){ %>
+                <button id="unfollow" class="btn btn-success">Following</button>
+            <% }else{ %>
+                <button id="follow" class="btn btn-default">Follow</button>
+            <%  } %>
+        <% } %>
+    </div>
+
+    <div id="user">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tweets</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Following</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Followers</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <% tweets.forEach(function(tweet){ %>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object" src="<%= tweet.owner.photo %>" alt="user photo"></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><%= tweet.owner.name %></h4>
+                            <p><%= tweet.content %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <% foundUser.following.forEach(function(following){ %>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object" src="<%= following.photo %>" alt="user photo"></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><%= following.name %></h4>
+                        </div>
+                    </div>
+                <% }) %> 
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <% foundUser.followers.forEach(function(follower){ %>
+                    <div class="media" style="padding-top: 10px">
+                        <div class="media-left">
+                            <a href="#"><img class="media-object" src="<%= follower.photo %>" alt="user photo"></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><%= follower.name %></h4>
+                        </div>
+                    </div>
+                <% }) %> 
+            
+            </div>
+        </div>
+    </div>
+
+
+<% include ../partials/footer %>
